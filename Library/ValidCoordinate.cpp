@@ -1,0 +1,1 @@
+auto valid = [&] (int r, int c) -> bool { return r >= 0 && r < R && c >= 0 && c < C; };
