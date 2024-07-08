@@ -30,7 +30,7 @@ template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator
 // --------------------------------------------------- Debug Template -------------------------------------------------------------
 
 #define DEBUG_OUT
-// #define DEBUG_TC_NUM
+#define DEBUG_TC_NUM
 
 void __print(int x) { cout << x; }
 void __print(long x) { cout << x; }
@@ -62,7 +62,7 @@ template<class T> bool ckmin(T&a, const T& b) { bool B = a > b; a = min(a,b); re
 template<class T> bool ckmax(T&a, const T& b) { bool B = a < b; a = max(a,b); return B; }
 
 // #undef DEBUG_OUT
-// #undef DEBUG_TC_NUM
+#undef DEBUG_TC_NUM
 
 #ifdef DEBUG_OUT
 #define dout std::cout

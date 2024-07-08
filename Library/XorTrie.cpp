@@ -1,30 +1,32 @@
-class Trie {
-struct Node {
-    Node* links[2];
-    int frequency; 
-    Node() : frequency(0) {
-        links[0] = links[1] = NULL;
-    }
+class XorTrie {
+    struct Node {
+        Node* links[2];
+        int frequency; 
+        Node() : frequency(0) {
+            links[0] = links[1] = nullptr;
+        }
 
-    bool containsKey(int bit) {
-        return (links[bit] != NULL);
-    }
+        bool containsKey(int bit) {
+            return (links[bit] != nullptr);
+        }
 
-    Node* get(int bit) {
-        return links[bit];
-    }
+        Node* get(int bit) {
+            return links[bit];
+        }
 
-    void put(int bit, Node* node) {
-        links[bit] = node;
-    }
-};
+        void put(int bit, Node* node) {
+            links[bit] = node;
+        }
+    };
 private:
     Node* root;
 public:
-    Trie() {
+    // Constructor: Initializes the Trie with a root node.
+    XorTrie() {
         root = new Node();
     }
 
+    // Inserts the number into the Trie.
     void insert(int num) {
         Node* node = root;
         for (int i = 31; i >= 0; i--) {
@@ -37,6 +39,7 @@ public:
         }
     }
     
+    // Deletes given number from the Trie.
     void del(int num) {
         Node* node = root;
         for (int i = 31; i >= 0; i--) {
@@ -50,6 +53,8 @@ public:
         }
     }
 
+    // Finds the best matching binary number that maximizes XOR with the given number.
+    // returns value 'x' such that (num XOR x) is as maximum as possible.
     int getBest(int num) {
         Node* node = root;
         int res = 0;
