@@ -20,6 +20,8 @@
 #include <unordered_map>
 using namespace std;
 
+// Library Source - https://github.com/21Cash/Competitive-Programming/tree/main/Library
+
 template<class Fun> class y_combinator_result { Fun fun_;
 public:
     template<class T> explicit y_combinator_result(T &&fun): fun_(std::forward<T>(fun)) {}
