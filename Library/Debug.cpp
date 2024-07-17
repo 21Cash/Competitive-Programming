@@ -1,7 +1,9 @@
 // --------------------------------------------------- Debug Template -------------------------------------------------------------
 
 #define DEBUG_OUT
-// #define DEBUG_TC_NUM
+#define DEBUG_TC_NUM
+
+const int new_line_count = 2; // How many new lines after each debug ? 
 
 void __print(int x) { cout << x; }
 void __print(long x) { cout << x; }
@@ -16,7 +18,7 @@ void __print(char x) { cout << '\'' << x << '\''; }
 void __print(const char *x) { cout << '\"' << x << '\"'; }
 void __print(const string &x) { cout << '\"' << x << '\"'; }
 void __print(bool x) { cout << (x ? "true" : "false"); }
-void _print() { cout << "]\n"; }
+void _print() { cout << "]" << string(new_line_count, '\n'); }
 
 template <size_t N> void __print(const bitset<N>& x) { cout << x; };
 template <typename T> void __print(const T &x);
@@ -33,14 +35,16 @@ template<class T> bool ckmin(T&a, const T& b) { bool B = a > b; a = min(a,b); re
 template<class T> bool ckmax(T&a, const T& b) { bool B = a < b; a = max(a,b); return B; }
 
 // #undef DEBUG_OUT
-// #undef DEBUG_TC_NUM
+#undef DEBUG_TC_NUM
 
 #ifdef DEBUG_OUT
 #define dout std::cout
-#define dbg(x...) do { std::cout << "[" << #x << "] = ["; _print(x); } while(0)
-#define f_dbg(x...) { std::cout << "[" << __func__ << ":" << (__LINE__) << " [" << #x << "] = ["; _print(x); /*cout << "\n";*/ } 
+#define db(x...) {cout << "["; _print(x); }
+#define dbg(x...) { cout << "[" << #x << "] = ["; _print(x); } 
+#define f_dbg(x...) { cout << "[" << __func__ << ":" << (__LINE__) << " [" << #x << "] = ["; _print(x);  } 
 #else
 #define dout if (false) std::cout
+#define db(x...) 
 #define dbg(x...)
 #define f_dbg(x...)
 #endif
