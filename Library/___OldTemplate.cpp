@@ -1,5 +1,23 @@
-#pragma region
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <climits>
+#include <array>
+#include <bitset>
+#include <cassert>
+#include <chrono>
+#include <cmath>
+#include <cstdint>
+#include <cstring>
+#include <functional>
+#include <iomanip>
+#include <iostream>
+#include <numeric>
+#include <queue>
+#include <random>
+#include <map>
+#include <set>
+#include <vector>
+#include <unordered_set>
+#include <unordered_map>
 using namespace std;
 
 // Library Source - https://github.com/21Cash/Competitive-Programming/tree/main/Library
@@ -13,14 +31,13 @@ template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator
 
 // --------------------------------------------------- Debug Template -------------------------------------------------------------
 
+#ifdef CASH_LOCAL
 #define DEBUG_OUT
 #define DEBUG_TC_NUM
-
-// Debug Off Defines
-#define dout if (false) std::cout
-#define db(x...) 
-#define dbg(x...)
-#define f_dbg(x...)
+#else
+#undef DEBUG_OUT
+#undef DEBUG_TC_NUM
+#endif
 
 const int new_line_count = 2; // How many new lines after each debug ? 
 
@@ -53,27 +70,83 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 template<class T> bool ckmin(T&a, const T& b) { bool B = a > b; a = min(a,b); return B; }
 template<class T> bool ckmax(T&a, const T& b) { bool B = a < b; a = max(a,b); return B; }
 
-#undef DEBUG_TC_NUM
 // #undef DEBUG_OUT
+#undef DEBUG_TC_NUM
 
 #ifdef DEBUG_OUT
 #define dout std::cout
 #define db(x...) {cout << "["; _print(x); }
 #define dbg(x...) { cout << "[" << #x << "] = ["; _print(x); } 
 #define f_dbg(x...) { cout << "[" << __func__ << ":" << (__LINE__) << " [" << #x << "] = ["; _print(x);  } 
+#else
+#define dout if (false) std::cout
+#define db(x...) 
+#define dbg(x...)
+#define f_dbg(x...)
 #endif
 
 // --------------------------------------------------------------------------------------------------------------------------------
 
-using ll = long long;
+using ll =  long long;
+using ull = unsigned long long;
 
 #define all(C) C.begin(), C.end()
 #define get_unique(v) {sort(v.begin(), v.end()); v.erase(unique(v.begin(), v.end()), v.end());}
 #define to_long_long(vec) vector<long long>((vec).begin(), (vec).end())
+#define sz(C) (int) C.size() 
+
+template<typename T1, typename T2> ostream& operator<<(ostream& out, const pair<T1, T2>& x) {return out << x.first << ' ' << x.second;}
+template<typename T1, typename T2> istream& operator>>(istream& in, pair<T1, T2>& x) {return in >> x.first >> x.second;}
+template<typename T> istream& operator>>(istream& in, vector<T>& a) {for(auto &x : a) in >> x; return in;};
+template<typename T> ostream& operator<<(ostream& out, vector<T>& a) {for(auto &x : a) out << x << ' '; return out;};
+template<class T> using min_pq = priority_queue<T, vector<T>, greater<T>>;
 
 ll GCD(ll x, ll y) { if (x == 0) return y; if (y == 0) return x; return GCD(y, x % y); }
-ll lcm(ll a,ll b) { return a * b / GCD(a, b); }
 ll ceil_div(ll x, ll y) { assert(y != 0); return (x + y - 1) / y; }
 ll floor_div(ll x, ll y) { assert(y != 0); if (y < 0) { y = -y; x = -x; } if (x >= 0) return x / y; return (x + 1) / y - 1; }
-#pragma endregion
+ll lcm(ll a,ll b) { return a * b / GCD(a, b); }
+bool is_even(ll x) { return (x % 2 == 0); }
+bool is_odd(ll x) { return (x % 2 == 1); }
 
+const bool single_tc = false;
+const long long INF = 1e18;
+const long long mod = 1e9 + 7;
+
+
+void test_case(int tc) {
+	
+	
+	
+}
+
+signed main() {
+
+    // freopen("input.txt", "r", stdin);
+    // freopen("output.txt", "w", stdout);
+    // freopen("error.txt", "w", stderr);
+    
+    ios::sync_with_stdio(false);
+    cin.tie(0); 
+    
+    int t = 1;
+    if(!single_tc) cin >> t;
+    
+    for(int i = 1; i <= t; i++) {
+        #ifdef DEBUG_TC_NUM
+        cout << "--------- Case #" << i <<  " ------------\n\n";
+        #endif
+        
+        test_case(i);
+        // test_case(i) ? cout << "YES\n" : cout << "NO\n";
+        
+        #ifdef DEBUG_TC_NUM
+        cout << "\n";
+        #endif
+    }
+    
+    #ifdef DEBUG_TC_NUM
+    cout << "------------------------------\n";
+    #endif    
+    
+    return 0;
+}
