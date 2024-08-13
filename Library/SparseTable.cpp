@@ -10,20 +10,20 @@ private:
     const T gcd_identity = 0;
     const T lcm_identity = 1;
     
-    std::vector<std::vector<T>> dp;
+    vector<std::vector<T>> dp;
     int k = 0, n;
     
     T identity_element = min_identity;
     T sparse_operation(T a, T b) { 
-        return std::min(a, b);
+        return min(a, b);
     }
 
 public:
     SparseTable(std::vector<T> &v) {
         n = v.size();
-        k = std::__lg(n);
+        k = __lg(n);
         dp.resize(k + 1, std::vector<T>(n));
-        std::ranges::copy(v, dp[0].begin());
+        copy(v.begin(), v.end(), dp[0].begin());
         for (int i = 1; i <= k; i++) {
             for (int j = 0; j + (1 << i) <= n; j++) {
                 auto a = dp[i - 1][j];

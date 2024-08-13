@@ -16,6 +16,7 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <stack>
 #include <unordered_set>
 #include <unordered_map>
 using namespace std;
@@ -36,11 +37,6 @@ using namespace std;
 #define new_line_count 2 // How many new lines after each debug ?
 #define tc_num_stream std::cout 
 #define d_stream std::cout
-
-#define dout if (false) std::cout
-#define db(x...) 
-#define dbg(x...)
-#define f_dbg(x...)
 
 void __print(int x) { d_stream << x; }
 void __print(long x) { d_stream << x; }
@@ -71,13 +67,16 @@ template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (s
 template<class T> bool ckmin(T&a, const T& b) { bool B = a > b; a = min(a,b); return B; }
 template<class T> bool ckmax(T&a, const T& b) { bool B = a < b; a = max(a,b); return B; }
 
-
-
 #ifdef DEBUG_OUT
 #define dout d_stream
 #define db(x...) {d_stream << "["; _print(x); }
 #define dbg(x...) { d_stream << "[" << #x << "] = ["; _print(x); } 
 #define f_dbg(x...) { d_stream << "[" << __func__ << ":" << (__LINE__) << " [" << #x << "] = ["; _print(x);  } 
+#else
+#define dout if (false) std::cout
+#define db(x...) 
+#define dbg(x...)
+#define f_dbg(x...)
 #endif 
 
 // --------------------------------------------------------------------------------------------------------------------------------

@@ -1,6 +1,7 @@
-#pragma region
 #include <bits/stdc++.h>
 using namespace std;
+
+#pragma region
 
 // Library Source - https://github.com/21Cash/Competitive-Programming/tree/main/Library
 
@@ -15,12 +16,6 @@ template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator
 
 #define DEBUG_OUT
 #define DEBUG_TC_NUM
-
-// Debug Off Defines
-#define dout if (false) std::cout
-#define db(x...) 
-#define dbg(x...)
-#define f_dbg(x...)
 
 const int new_line_count = 2; // How many new lines after each debug ? 
 
@@ -61,6 +56,11 @@ template<class T> bool ckmax(T&a, const T& b) { bool B = a < b; a = max(a,b); re
 #define db(x...) {cout << "["; _print(x); }
 #define dbg(x...) { cout << "[" << #x << "] = ["; _print(x); } 
 #define f_dbg(x...) { cout << "[" << __func__ << ":" << (__LINE__) << " [" << #x << "] = ["; _print(x);  } 
+#else
+#define dout if (false) std::cout
+#define db(x...) 
+#define dbg(x...)
+#define f_dbg(x...)
 #endif
 
 // --------------------------------------------------------------------------------------------------------------------------------
@@ -75,5 +75,6 @@ ll GCD(ll x, ll y) { if (x == 0) return y; if (y == 0) return x; return GCD(y, x
 ll lcm(ll a,ll b) { return a * b / GCD(a, b); }
 ll ceil_div(ll x, ll y) { assert(y != 0); return (x + y - 1) / y; }
 ll floor_div(ll x, ll y) { assert(y != 0); if (y < 0) { y = -y; x = -x; } if (x >= 0) return x / y; return (x + 1) / y - 1; }
+
 #pragma endregion
 

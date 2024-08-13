@@ -1,4 +1,4 @@
-vector<ll> getDivisors(ll x) {
+vector<ll> get_divisors(ll x) {
     vector<ll> factors;
     for (ll i = 1; i <= sqrt(x); ++i) 
     if (x % i == 0) {
@@ -8,6 +8,6 @@ vector<ll> getDivisors(ll x) {
         }
     }
     // To Return sorted, uncomment below line
-    // sort(factors.begin(), factors.end());
+    sort(factors.begin(), factors.end());
     return factors;
 }

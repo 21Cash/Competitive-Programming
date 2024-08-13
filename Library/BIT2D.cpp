@@ -1,64 +1,67 @@
 /* 2D BIT */
 
-struct BIT2D {
-    vector<vector<long long>> bit;
-    int n, m;
-    
-    BIT2D() { }
-    
-    void init(int _n, int _m) {
-        n = _n;
-        m = _m;
-        bit.assign(n, vector<long long>(m, 0));
+class BIT2D {
+private:
+    vector<vector<vector<ll>>> M, A;
+    int R;
+    int C;
+public:
+    // All set to by default
+    BIT2D(int n, int m) { // Pass Number Of Rows, Cols
+        this->R = n + 1;
+        this->C = m + 1;
+        M.assign(n + 1, vector<vector<ll>>(m + 1, vector<ll>(2, 0)));
+        A.assign(n + 1, vector<vector<ll>>(m + 1, vector<ll>(2, 0)));
     }
-    
-    void init(const vector<vector<long long>>& arr) {
-        n = arr.size();
-        m = arr[0].size();
-        bit.assign(n, vector<long long>(m, 0));
-        for (int i = 0; i < n; ++i)
-            for (int j = 0; j < m; ++j)
-                add(i, j, arr[i][j]);
+ 
+private:
+    void upd2(vector<vector<vector<ll>>>& t, int x, int y, long long mul,
+              long long add) {
+        for (int i = x; i < R; i += i & -i) {
+            for (int j = y; j < C; j += j & -j) {
+                t[i][j][0] += mul;
+                t[i][j][1] += add;
+            }
+        }
     }
-
-    void add(int x, int y, long long delta) {
-        for (int i = x; i < n; i |= i + 1)
-            for (int j = y; j < m; j |= j + 1)
-                bit[i][j] += delta;
+ 
+    void upd1(int x, int y1, int y2, long long mul, long long add) {
+        upd2(M, x, y1, mul, -mul * (y1 - 1));
+        upd2(M, x, y2, -mul, mul * y2);
+        upd2(A, x, y1, add, -add * (y1 - 1));
+        upd2(A, x, y2, -add, add * y2);
     }
-    
-    // Returns Sum formed by rectangle [0, 0] (Top Left Coord), [x, y] (Bottom right Coord)
-    long long sum(int x, int y) {
-        long long ret = 0;
-        for (int i = x; i >= 0; i = (i & (i + 1)) - 1)
-            for (int j = y; j >= 0; j = (j & (j + 1)) - 1)
-                ret += bit[i][j];
-        return ret;
+ 
+    long long query2(vector<vector<vector<ll>>>& t, int x, int y) {
+        long long mul = 0, add = 0;
+        for (int i = y; i > 0; i -= i & -i) {
+            mul += t[x][i][0];
+            add += t[x][i][1];
+        }
+        return mul * y + add;
     }
-    
-    // Returns the sum of the rect
-    long long rect_sum(int topLeftX, int topLeftY, int bottomRightX, int bottomRightY) {
-        if (topLeftX > bottomRightX || topLeftY > bottomRightY || topLeftX < 0 || topLeftY < 0 || bottomRightX >= n || bottomRightY >= m)
-            return 0;
-
-        long long total = sum(bottomRightX, bottomRightY);
-        if (topLeftX > 0) total -= sum(topLeftX - 1, bottomRightY);
-        if (topLeftY > 0) total -= sum(bottomRightX, topLeftY - 1);
-        if (topLeftX > 0 && topLeftY > 0) total += sum(topLeftX - 1, topLeftY - 1);
-        return total;
+ 
+    long long query1(int x, int y) {
+        long long mul = 0, add = 0;
+        for (int i = x; i > 0; i -= i & -i) {
+            mul += query2(M, i, y);
+            add += query2(A, i, y);
+        }
+        return mul * x + add;
     }
-    
+ 
+public:
+    // NOTE : Arguments passed must be 0 - Based Indexed;
     // Adds Delta to the rect
-    void range_add(int topLeftX, int topLeftY, int bottomRightX, int bottomRightY, long long delta) {
-        if (topLeftX > bottomRightX || topLeftY > bottomRightY || topLeftX < 0 || topLeftY < 0 || bottomRightX >= n || bottomRightY >= m)
-            return;
-
-        add(topLeftX, topLeftY, delta);
-        if (bottomRightX + 1 < n)
-            add(bottomRightX + 1, topLeftY, -delta);
-        if (bottomRightY + 1 < m)
-            add(topLeftX, bottomRightY + 1, -delta);
-        if (bottomRightX + 1 < n && bottomRightY + 1 < m)
-            add(bottomRightX + 1, bottomRightY + 1, delta);
+    void range_add(int top_left_x, int top_left_y, int bottom_right_x, int bottom_right_y, long long val) {
+        top_left_x++, top_left_y++, bottom_right_x++, bottom_right_y++;
+        upd1(top_left_x, top_left_y, bottom_right_y, val, -val * (top_left_x - 1));
+        upd1(bottom_right_x, top_left_y, bottom_right_y, -val, val * bottom_right_x);
+    }
+ 
+    // Returns the sum of the rect
+    ll rect_sum(int top_left_x, int top_left_y, int bottom_right_x, int bottom_right_y) {
+        top_left_x++, top_left_y++, bottom_right_x++, bottom_right_y++;
+        return query1(bottom_right_x, bottom_right_y) - query1(top_left_x - 1, bottom_right_y) - query1(bottom_right_x, top_left_y - 1) + query1(top_left_x - 1, top_left_y - 1);
     }
 };
