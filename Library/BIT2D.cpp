@@ -6,7 +6,7 @@ private:
     int R;
     int C;
 public:
-    // All set to by default
+    // All set to 0 by default
     BIT2D(int n, int m) { // Pass Number Of Rows, Cols
         this->R = n + 1;
         this->C = m + 1;

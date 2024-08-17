@@ -21,74 +21,29 @@
 #include <unordered_map>
 using namespace std;
 
+// "When will 21Cash become a Guardian ??" 
+
+// Author : Sushil L (aka 21Cash), 3rd Year CS
 // Library Source - https://github.com/21Cash/Competitive-Programming/tree/main/Library
 
-#pragma region Debugger
-// --------------------------------------------------- Debug Template -------------------------------------------------------------
-
 #ifdef CASH_LOCAL
-#define DEBUG_OUT
-#define DEBUG_TC_NUM
-#endif 
+#include "Debug.hpp"
+#endif
 
-// #undef DEBUG_TC_NUM
-// #undef DEBUG_OUT
+#pragma region Utilities
 
-#define new_line_count 2 // How many new lines after each debug ?
-#define tc_num_stream std::cout 
-#define d_stream std::cout
-
-void __print(int x) { d_stream << x; }
-void __print(long x) { d_stream << x; }
-void __print(long long x) { d_stream << x; }
-void __print(unsigned x) { d_stream << x; }
-void __print(unsigned long x) { d_stream << x; }
-void __print(unsigned long long x) { d_stream << x; }
-void __print(float x) { d_stream << x; }
-void __print(double x) { d_stream << x; }
-void __print(long double x) { d_stream << x; }
-void __print(char x) { d_stream << '\'' << x << '\''; }
-void __print(const char *x) { d_stream << '\"' << x << '\"'; }
-void __print(const string &x) { d_stream << '\"' << x << '\"'; }
-void __print(bool x) { d_stream << (x ? "true" : "false"); }
-void _print() { d_stream << "]" << string(new_line_count, '\n'); }
-
-template <size_t N> void __print(const bitset<N>& x) { d_stream << x; };
-template <typename T> void __print(const T &x);
-template <typename T, typename V> void __print(const pair<T, V> &x);
-template <typename T> void __print(const T &x);
-template <typename T, typename... V> void _print(T t, V... v);
-template <typename T, typename V> void __print(const pair<T, V> &x) 
-{ d_stream << '{'; __print(x.first); d_stream << ", "; __print(x.second); d_stream << '}'; }
-template <typename T> void __print(const T &x) 
-{ int f = 0; d_stream << '{'; for (auto &i : x) d_stream << (f++ ? ", " : ""), __print(i); d_stream << "}"; }
-template <typename T, typename... V> void _print(T t, V... v) {__print(t); if (sizeof...(v)) d_stream << ", "; _print(v...); }
-
-template<class T> bool ckmin(T&a, const T& b) { bool B = a > b; a = min(a,b); return B; }
-template<class T> bool ckmax(T&a, const T& b) { bool B = a < b; a = max(a,b); return B; }
-
-#ifdef DEBUG_OUT
-#define dout d_stream
-#define db(x...) {d_stream << "["; _print(x); }
-#define dbg(x...) { d_stream << "[" << #x << "] = ["; _print(x); } 
-#define f_dbg(x...) { d_stream << "[" << __func__ << ":" << (__LINE__) << " [" << #x << "] = ["; _print(x);  } 
-#else
+#ifndef DEBUG_OUT
 #define dout if (false) std::cout
 #define db(x...) 
 #define dbg(x...)
 #define f_dbg(x...)
-#endif 
+#endif
 
-// --------------------------------------------------------------------------------------------------------------------------------
-#pragma endregion
-
-#pragma region Utilities
 using ll =  long long;
 using ull = unsigned long long;
 
 #define all(C) C.begin(), C.end()
 #define get_unique(v) {sort(v.begin(), v.end()); v.erase(unique(v.begin(), v.end()), v.end());}
-#define to_long_long(vec) vector<long long>((vec).begin(), (vec).end())
 #define sz(C) (int) C.size() 
 
 template<class Fun> class y_combinator_result { Fun fun_;
@@ -103,10 +58,11 @@ template<typename T> istream& operator>>(istream& in, vector<T>& a) {for(auto &x
 template<typename T> ostream& operator<<(ostream& out, vector<T>& a) {for(auto &x : a) out << x << ' '; return out;};
 template<class T> using min_pq = priority_queue<T, vector<T>, greater<T>>;
 
+ll POW(ll a, ll b) { return a <= 0 || b < 0 ? 0 : (b == 0 ? 1 : (b % 2 ? a * POW(a, b - 1) : POW(a * a, b / 2))); }
 ll GCD(ll x, ll y) { if (x == 0) return y; if (y == 0) return x; return GCD(y, x % y); }
+ll LCM(ll a,ll b) { return a * b / GCD(a, b); }
 ll ceil_div(ll x, ll y) { assert(y != 0); return (x + y - 1) / y; }
 ll floor_div(ll x, ll y) { assert(y != 0); if (y < 0) { y = -y; x = -x; } if (x >= 0) return x / y; return (x + 1) / y - 1; }
-ll lcm(ll a,ll b) { return a * b / GCD(a, b); }
 bool is_even(ll x) { return (x % 2 == 0); }
 bool is_odd(ll x) { return (x % 2 == 1); }
 #pragma endregion

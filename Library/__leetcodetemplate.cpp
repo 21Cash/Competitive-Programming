@@ -3,6 +3,9 @@ using namespace std;
 
 #pragma region
 
+// "When will 21Cash become a Guardian ??" 
+
+// Author : Sushil L (aka 21Cash), 3rd Year CS
 // Library Source - https://github.com/21Cash/Competitive-Programming/tree/main/Library
 
 template<class Fun> class y_combinator_result { Fun fun_;
@@ -69,12 +72,13 @@ using ll = long long;
 
 #define all(C) C.begin(), C.end()
 #define get_unique(v) {sort(v.begin(), v.end()); v.erase(unique(v.begin(), v.end()), v.end());}
-#define to_long_long(vec) vector<long long>((vec).begin(), (vec).end())
 
+ll POW(ll a, ll b) { return a <= 0 || b < 0 ? 0 : (b == 0 ? 1 : (b % 2 ? a * POW(a, b - 1) : POW(a * a, b / 2))); }
 ll GCD(ll x, ll y) { if (x == 0) return y; if (y == 0) return x; return GCD(y, x % y); }
-ll lcm(ll a,ll b) { return a * b / GCD(a, b); }
+ll LCM(ll a,ll b) { return a * b / GCD(a, b); }
 ll ceil_div(ll x, ll y) { assert(y != 0); return (x + y - 1) / y; }
 ll floor_div(ll x, ll y) { assert(y != 0); if (y < 0) { y = -y; x = -x; } if (x >= 0) return x / y; return (x + 1) / y - 1; }
-
+bool is_even(ll x) { return (x % 2 == 0); }
+bool is_odd(ll x) { return (x % 2 == 1); }
 #pragma endregion
 
