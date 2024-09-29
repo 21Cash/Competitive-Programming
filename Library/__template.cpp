@@ -43,6 +43,7 @@ using ll =  long long;
 using ull = unsigned long long;
 
 #define all(C) C.begin(), C.end()
+#define rev_all(C) C.rbegin(), C.rend()
 #define get_unique(v) {sort(v.begin(), v.end()); v.erase(unique(v.begin(), v.end()), v.end());}
 #define sz(C) (int) C.size() 
 
@@ -84,8 +85,10 @@ signed main() {
     // freopen("output.txt", "w", stdout);
     // freopen("error.txt", "w", stderr);
     
+    #ifndef CASH_LOCAL
     ios::sync_with_stdio(false);
     cin.tie(0); 
+    #endif
     
     int t = 1;
     if(!single_tc) cin >> t;

@@ -1,3 +1,4 @@
+// Calculate Prefix Sum 
 vector<ll> pref_sum(A.size() + 1);
 pref_sum[0] = 0;
 

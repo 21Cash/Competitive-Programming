@@ -80,3 +80,7 @@ if __name__ == "__main__":
         create_templates_folder(templates_path)
         generated_files_count = process_snippet_files(snippets_path, templates_path)
         log_message(f"{generated_files_count} files Converted.")
+        
+        # Output the final message and wait for any key press
+        print(f"{generated_files_count} Snippet(s) converted.")
+        input("Press any key to close.")

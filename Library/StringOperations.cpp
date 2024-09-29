@@ -32,11 +32,11 @@ namespace stringOperations {
             init(str);
         }
         
-        ll queryFreq(int left, int right, char ch) {
+        ll query_freq(int left, int right, char ch) {
             return prefix[right + 1][ord(ch)] - prefix[left][ord(ch)];        
         }
         
-        vector<ll> getTable(int left, int right) {
+        vector<ll> get_table(int left, int right) {
             vector<ll> table = prefix[right + 1];
             for(int curId = ord(baseChar); curId <= ord(endChar); curId++) {
                 table[curId] -= prefix[left][curId];
@@ -67,7 +67,7 @@ namespace stringOperations {
         return result;
     }
     
-    vector<string> splitString(string &str, char sep) {
+    vector<string> split_string(string &str, char sep) {
         stringstream ss(str);
         vector<string> words;
         string word = "";
