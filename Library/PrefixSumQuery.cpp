@@ -1,11 +1,19 @@
-// Calculate Prefix Sum 
-vector<ll> pref_sum(A.size() + 1);
-pref_sum[0] = 0;
-
-for(int i = 1; i <= (int) A.size(); i++) {
-	pref_sum[i] = pref_sum[i - 1] + A[i - 1];
-}
-
-auto query_sum = [&] (int l_index, int r_index) {
-	return pref_sum[r_index + 1] - pref_sum[l_index];
+class PrefixSumQuery {
+private:
+    vector<ll> prefix_sum;
+public:
+    PrefixSumQuery(vector<int> &nums) {
+        int N = nums.size();
+        prefix_sum.resize(N + 1);
+        prefix_sum[0] = 0;
+        
+        for(int i = 1; i <= N; i++) {
+            prefix_sum[i] = prefix_sum[i - 1] + nums[i - 1];
+        }
+    }
+    
+    ll query_sum(int left, int right) {
+        assert(left <= right);
+        return prefix_sum[right + 1] - prefix_sum[left];
+    }
 };

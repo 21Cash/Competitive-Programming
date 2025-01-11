@@ -1,0 +1,1 @@
+vector<vector<vector</*Type*/>>> /*VecName*/(/*D1 size*/, vector<vector</*Type*/>>(/*D2 size*/, vector</*Type*/>(/*D3 size*/, /*Default Value*/)));

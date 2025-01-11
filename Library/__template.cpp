@@ -46,6 +46,7 @@ using ull = unsigned long long;
 #define rev_all(C) C.rbegin(), C.rend()
 #define get_unique(v) {sort(v.begin(), v.end()); v.erase(unique(v.begin(), v.end()), v.end());}
 #define sz(C) (int) C.size() 
+#define pop_count(x) __builtin_popcountll(x)
 
 template<class Fun> class y_combinator_result { Fun fun_;
 public:

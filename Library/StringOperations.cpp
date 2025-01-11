@@ -26,7 +26,7 @@ namespace stringOperations {
         stringQuery(string &str) {
             init(str);
         }
-		
+        
         stringQuery(string &str, char _baseChar, char _endChar) {
             baseChar = _baseChar, endChar = _endChar;
             init(str);
@@ -75,6 +75,43 @@ namespace stringOperations {
             if(word.size() > 0) words.push_back(word);
         }
         return words;
+    }
+    
+    ll binary_to_long_long(string &binaryString) {
+        ll result = 0;
+        for (char bit : binaryString) {
+            result = (result << 1) + (bit - '0');  
+        }
+        return result;
+    }
+    
+     // Returns binary string with removing leading zeroes
+    string get_binary_string(ll n) {
+        if (n == 0) return "0";  
+
+        string binary;
+        for (int i = sizeof(ll) * 8 - 1; i >= 0; --i) {
+            binary += (n & (1LL << i)) ? '1' : '0';
+        }
+
+        return binary.substr(binary.find('1'));
+    }
+    
+        
+    string trim_left(const string &s, char trimChar) {
+        size_t start = 0;
+        while (start < s.size() && s[start] == trimChar) {
+            start++;
+        }
+        return s.substr(start); 
+    }
+
+    string trim_right(const string &s, char trimChar) {
+        size_t end = s.size();
+        while (end > 0 && s[end - 1] == trimChar) {
+            end--;
+        }
+        return s.substr(0, end); 
     }
 }
 

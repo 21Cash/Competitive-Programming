@@ -73,6 +73,7 @@ using ll = long long;
 #define all(C) C.begin(), C.end()
 #define rev_all(C) C.rbegin(), C.rend()
 #define get_unique(v) {sort(v.begin(), v.end()); v.erase(unique(v.begin(), v.end()), v.end());}
+#define pop_count(x) __builtin_popcountll(x)
 
 ll POW(ll a, ll b) { return a <= 0 || b < 0 ? 0 : (b == 0 ? 1 : (b % 2 ? a * POW(a, b - 1) : POW(a * a, b / 2))); }
 ll GCD(ll x, ll y) { if (x == 0) return y; if (y == 0) return x; return GCD(y, x % y); }

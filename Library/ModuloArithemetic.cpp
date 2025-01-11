@@ -1,6 +1,6 @@
 namespace modop {
 	ll madd(ll a, ll b) {
-	  return (a + b) % mod;
+	  return ((a % mod + b % mod) % mod + mod) % mod;
 	}
 	ll msub(ll a, ll b) {
 	  return (((a - b) % mod) + mod) % mod;
