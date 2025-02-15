@@ -1,5 +1,6 @@
 struct DSU {
-    std::vector<int> f, siz;
+    vector<int> f, siz;
+    int components_cnt = 0;
     
     DSU() {}
     DSU(int n) {
@@ -10,6 +11,7 @@ struct DSU {
         f.resize(n);
         std::iota(f.begin(), f.end(), 0);
         siz.assign(n, 1);
+        components_cnt = n; 
     }
     
     int find(int x) {
@@ -31,6 +33,7 @@ struct DSU {
         }
         siz[x] += siz[y];
         f[y] = x;
+        components_cnt--;
         return true;
     }
     
@@ -43,7 +46,11 @@ struct DSU {
         siz[x] = 1;
     }
     
-    bool isConnected() {
+    int get_components_count() {
+        return components_cnt;
+    }
+    
+    bool is_connected() {
         return siz[find(0)] == siz.size();
     }
 };

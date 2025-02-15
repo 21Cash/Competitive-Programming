@@ -27,16 +27,16 @@ using namespace std;
 // Library Source - https://github.com/21Cash/Competitive-Programming/tree/main/Library
 
 #ifdef CASH_LOCAL
-#include "Debug.hpp"
+    #include "Debug.hpp"
 #endif
 
 #pragma region Utilities
 
 #ifndef DEBUG_OUT
-#define dout if (false) std::cout
-#define db(x...) 
-#define dbg(x...)
-#define f_dbg(x...)
+    #define dout if (false) std::cout
+    #define db(x...) 
+    #define dbg(x...)
+    #define f_dbg(x...)
 #endif
 
 using ll =  long long;

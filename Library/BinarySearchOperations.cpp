@@ -40,6 +40,28 @@ namespace binary_search_operations {
         }
         return lo;
     }
+    
+    const double eps = 1e-9;
+    
+    template<typename T, typename U> 
+    T first_double_true(T lo, T hi, U f) {  // If f(X) is not satisfied in range [lo, hi], returns (hi + eps);
+        hi += eps;
+        while (hi - lo > eps) {
+            T mid = lo + (hi - lo) / 2;
+            f(mid) ? hi = mid : lo = mid + eps;
+        }
+        return f(lo) ? lo : hi + eps;
+    }
+    
+    template<typename T, typename U>
+    T last_double_true(T lo, T hi, U f) {  // If f(X) is not satisfied in range [lo, hi], returns (lo - eps);
+        lo -= eps;
+        while (hi - lo > eps) {
+            T mid = lo + (hi - lo) / 2;
+            f(mid) ? lo = mid : hi = mid - eps;
+        }
+        return f(lo) ? lo : lo - eps;
+    }
 }
 
 using namespace binary_search_operations;
